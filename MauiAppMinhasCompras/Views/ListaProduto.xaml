@@ -30,7 +30,7 @@
                   Refreshing="lst_produtos_Refreshing"
                   ItemSelected="lst_produtos_ItemSelected">
                 <ListView.Header>
-                    <Grid ColumnDefinitions="40, 120, 80, 80, 100"
+                    <Grid ColumnDefinitions="*, *, *, *, *"
                           BackgroundColor="{StaticResource Gray200}">
                         <Label Grid.Column="0" Text="ID" Padding="5" FontAttributes="Bold"/>
                         <Label Grid.Column="1" Text="Descrição" FontAttributes="Bold"/>
@@ -46,7 +46,7 @@
                             <ViewCell.ContextActions>
                                 <MenuItem Text="Remover" Clicked="MenuItem_Clicked"/>
                             </ViewCell.ContextActions>
-                            <Grid ColumnDefinitions="40, 120, 80, 80, 100">
+                            <Grid ColumnDefinitions="*, *, *, *, *">
                                 <Label Grid.Column="0" Text="{Binding Id}" Padding="5" />
                                 <Label Grid.Column="1" Text="{Binding Descricao}"/>
                                 <Label Grid.Column="2" Text="{Binding Preco, StringFormat='{}{0:c}'}" />

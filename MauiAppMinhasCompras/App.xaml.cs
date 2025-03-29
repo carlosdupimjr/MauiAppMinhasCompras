@@ -37,8 +37,8 @@ namespace MauiAppMinhasCompras
         {
             var window = base.CreateWindow(activationState);
 
-            const int newWidth = 450;
-            const int newHeight = 800;
+            const int newWidth = 600;
+            const int newHeight = 900;
 
             window.Width = newWidth;
             window.Height = newHeight;
