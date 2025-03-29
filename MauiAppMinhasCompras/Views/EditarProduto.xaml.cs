@@ -21,6 +21,7 @@ public partial class EditarProduto : ContentPage
                 Descricao = txt_descricao.Text,
                 Quantidade = Convert.ToDouble(txt_quantidade.Text),
                 Preco = Convert.ToDouble(txt_preco.Text),
+                Grupo = grupoPicker.SelectedItem.ToString(),
             };
 
             await App.Db.Update(p);

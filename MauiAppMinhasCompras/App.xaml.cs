@@ -1,4 +1,5 @@
 ﻿using MauiAppMinhasCompras.Helpers;
+using MauiAppMinhasCompras.Models;
 using System.Globalization;
 
 namespace MauiAppMinhasCompras
@@ -24,6 +25,7 @@ namespace MauiAppMinhasCompras
                 return _db;
             }
         }
+
         public App()
         {
             InitializeComponent();
@@ -38,7 +40,7 @@ namespace MauiAppMinhasCompras
             var window = base.CreateWindow(activationState);
 
             const int newWidth = 600;
-            const int newHeight = 900;
+            const int newHeight = 800;
 
             window.Width = newWidth;
             window.Height = newHeight;

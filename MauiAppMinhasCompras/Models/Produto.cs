@@ -13,21 +13,24 @@ namespace MauiAppMinhasCompras.Models
         string _descricao;
         double _quantidade;
         double _preco;
+        string _grupo;
 
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        public string Descricao { 
+        public string Descricao
+        {
             get => _descricao;
             set
             {
-                if(value == null)
+                if (value == null)
                 {
                     throw new Exception("Por favor, preencha a descrição!");
                 }
                 _descricao = value;
             }
         }
-        public double Quantidade { 
+        public double Quantidade
+        {
             get => _quantidade;
             set
             {
@@ -38,8 +41,9 @@ namespace MauiAppMinhasCompras.Models
                 _quantidade = value;
             }
         }
-        public double Preco { 
-            get => _preco; 
+        public double Preco
+        {
+            get => _preco;
             set
             {
                 if (value == 0)
@@ -51,5 +55,11 @@ namespace MauiAppMinhasCompras.Models
         }
 
         public double Total { get => Quantidade * Preco; }
+        public string Grupo
+        {
+            get => _grupo;
+            set => _grupo = value;
+            }
+        }
     }
-}
+

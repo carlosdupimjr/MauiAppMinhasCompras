@@ -1,31 +1,76 @@
 using MauiAppMinhasCompras.Models;
 using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 
 namespace MauiAppMinhasCompras.Views;
 
 public partial class ListaProduto : ContentPage
 {
 	ObservableCollection<Produto> lista = new ObservableCollection<Produto>();
-	public ListaProduto()
+
+    public string SelectedGrupo { get; set; } = "Todos";
+    public ListaProduto()
 	{
 		InitializeComponent();
-
-		lst_produtos.ItemsSource = lista;
+        BindingContext = this;
+        lst_produtos.ItemsSource = lista;
 	}
 
     protected async override void OnAppearing()
     {
-		try
-		{
-			lista.Clear();
-			List<Produto> tmp = await App.Db.GetAll();
+        base.OnAppearing();
+        await LoadProdutos();
+        ApplyGroupFilter(); // Aplica o filtro inicial
+    }
 
-			tmp.ForEach(i => lista.Add(i));
-		}
-		catch (Exception ex)
-		{
-			await DisplayAlert("Ops", ex.Message, "OK");
-		}
+    // Método para carregar todos os produtos do banco
+    private async Task LoadProdutos()
+    {
+        try
+        {
+            lista.Clear();
+            List<Produto> tmp = await App.Db.GetAll();
+            tmp.ForEach(i => lista.Add(i));
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Ops", ex.Message, "OK");
+        }
+    }
+
+    
+    private async void ApplyGroupFilter()
+    {
+        lista.Clear();
+
+        List<Produto> produtosFiltrados;
+
+        
+        var produtos = await App.Db.GetAll();
+
+        if (SelectedGrupo == "Todos")
+        {
+            
+            produtosFiltrados = produtos;
+        }
+        else
+        {
+            
+            produtosFiltrados = produtos.Where(p => p.Grupo == SelectedGrupo).ToList();
+        }
+
+        
+        foreach (var produto in produtosFiltrados)
+        {
+            lista.Add(produto);
+        }
+    }
+
+
+    private void pickerSearch_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        SelectedGrupo = pickerSearch.SelectedItem.ToString();
+        ApplyGroupFilter();
     }
 
     private void ToolbarItem_Clicked(object sender, EventArgs e)
@@ -65,6 +110,8 @@ public partial class ListaProduto : ContentPage
             lst_produtos.IsRefreshing = false;
         }
     }
+
+
 
     private void ToolbarItem_Clicked_1(object sender, EventArgs e)
 	{
@@ -133,5 +180,5 @@ public partial class ListaProduto : ContentPage
 		{
 			lst_produtos.IsRefreshing = false;
 		}
-    }
+    }    
 }

@@ -19,5 +19,19 @@
             <Label Text="Preço Unitário" />
             <Entry x:Name="txt_preco" Text="{Binding Preco}" Keyboard="Numeric" />
 
-        </VerticalStackLayout>
+        <Label Text="Grupo de Produto" />
+        <Picker x:Name="grupoPicker" SelectedItem="{Binding Grupo}" >
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Alimentos</x:String>
+                    <x:String>Eletrônicos</x:String>
+                    <x:String>Higiene</x:String>
+                    <x:String>Limpeza</x:String>
+                    <x:String>Móveis</x:String>
+                    <x:String>Outros</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+    </VerticalStackLayout>
 </ContentPage>
