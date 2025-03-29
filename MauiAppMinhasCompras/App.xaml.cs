@@ -1,4 +1,5 @@
 ﻿using MauiAppMinhasCompras.Helpers;
+using System.Globalization;
 
 namespace MauiAppMinhasCompras
 {
@@ -27,8 +28,22 @@ namespace MauiAppMinhasCompras
         {
             InitializeComponent();
 
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("pt-BR");
+
             //MainPage = new AppShell();
             MainPage = new NavigationPage(new Views.ListaProduto());
+        }
+        protected override Window CreateWindow(IActivationState activationState)
+        {
+            var window = base.CreateWindow(activationState);
+
+            const int newWidth = 450;
+            const int newHeight = 800;
+
+            window.Width = newWidth;
+            window.Height = newHeight;
+
+            return window;
         }
     }
 }
